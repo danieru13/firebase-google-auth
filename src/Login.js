@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import firebase from './base.js';
 
-const Login = () =>{
+const Login = () => {
 
     const [user, setUser] = useState("");
 
@@ -14,19 +14,26 @@ const Login = () =>{
         });
     }
 
+    const signOut = () => {
+        firebase.auth().signOut().then(result => {
+            console.log("Exito");
+            setUser("");
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+
     return (
         <div>
-        { user ? (
-            <div>
-            <h1>Hello, {user.user.displayName}</h1>
-            
-            <button>Sign out</button>
-            </div>
-        ) : (
-            
-            <button onClick={login}>Login</button>
-            
-        )}
+            {user ? (
+                <div>
+                    <h1>Hello, {user.user.displayName}</h1>
+
+                    <button onClick={signOut}>Sign out</button>
+                </div>
+            ) : (
+                    <button onClick={login}>Login</button>
+                )}
         </div>
     )
 }
