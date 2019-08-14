@@ -28,6 +28,7 @@ const Login = () => {
             {user ? (
                 <div>
                     <h1>Hello, {user.user.displayName}</h1>
+                    <img alt="prof pic" src={user.user.photoURL}/>
 
                     <button onClick={signOut}>Sign out</button>
                 </div>
